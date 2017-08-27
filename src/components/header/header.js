@@ -42,7 +42,7 @@ class Header extends React.Component {
         {this.state.user ? <p> Hi, {this.state.user.displayName || this.state.user.email} </p> : ''}
 				<nav className="top-links">
 					<ul>
-            {this.state.user ? <li><Link to="/newschedule">Upload Schedule</Link></li> : ''}
+            {this.state.user ? <li><Link to="/createschedule">Upload Schedule</Link> <Link to="/myschedule">My Schedule</Link></li> : ''}
             {this.state.user ?
               <div><li><a><em><span onClick={this.logout.bind(this)}>Log Out</span></em></a></li></div>
               :
