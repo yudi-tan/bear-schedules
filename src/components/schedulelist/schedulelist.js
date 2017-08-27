@@ -21,6 +21,7 @@ class ScheduleList extends React.Component {
           id: user,
           user: users[user].user,
           major: users[user].major,
+          school: users[user].school
         })
       }
       this.setState({
@@ -32,7 +33,7 @@ class ScheduleList extends React.Component {
 
   render() {
     console.log(this.state.schedules);
-    const allSchedules = this.state.schedules.map((p) => <Schedule key={p.id} user={p.user} major={p.major} />);
+    const allSchedules = this.state.schedules.map((p) => <Schedule key={p.id} user={p.user} major={p.major} school={p.school} />);
     return (
       <div>
         <main id="main">

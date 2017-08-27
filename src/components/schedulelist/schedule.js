@@ -89,7 +89,7 @@ class Schedule extends React.Component {
     return (
       <div className="section">
       <Slider {...settings}>
-        <p><strong>Major:</strong> <br/>{this.props.major}</p>
+        <p><strong>School:</strong> <br/>{this.props.school}<br/><strong>Major:</strong><br/>{this.props.major}</p>
         {semesterList}
       </Slider>
     </div>

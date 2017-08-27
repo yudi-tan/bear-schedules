@@ -9,6 +9,7 @@ class ScheduleForm extends React.Component {
     this.state = {
       user: null,
       semester: 'Freshman Fall',
+      school: '',
       major: '',
       class1:'',
       class2:'',
@@ -33,20 +34,17 @@ class ScheduleForm extends React.Component {
     });
   };
 
-  userExistsCallBack(email, major) {
-    firebase.database().ref('users').push({user:email, major})
-  };
-
   handleSubmit(e) {
     e.preventDefault();
     const semestersRef = firebase.database().ref('semesters');
     const usersRef = firebase.database().ref('users');
     const email = this.state.user.email;
     const major = this.state.major;
+    const school = this.state.school;
     usersRef.orderByChild('user').equalTo(email).once('value').then(function(snapshot) {
       var notExists = (snapshot.val() == null);
       if(notExists){
-        usersRef.push({user:email, major});
+        usersRef.push({user:email, major, school});
       }
     });
 
@@ -64,6 +62,7 @@ class ScheduleForm extends React.Component {
     this.setState({
       semester: 'Freshman Fall',
       major: '',
+      school: '',
       class1:'',
       class2:'',
       class3:'',
@@ -77,9 +76,15 @@ class ScheduleForm extends React.Component {
   render(){
     return (
       <div className="section">
+        <p>You only need to fill in your major and school on your first submission.</p>
+        <p>You don't have to fill up all the blanks either.</p>
+        <p>For UC Berkeley students, please use "UCB" as School name. Go Bears!</p>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>Major: </label>
           <input type="text" name="major" onChange={this.handleChange.bind(this)} value={this.state.major} placeholder="Your Major"/>
+          <br/><br/>
+          <label>School: </label>
+          <input type="text" name="school" onChange={this.handleChange.bind(this)} value={this.state.school} placeholder="Your School"/>
           <br/><br/>
           Semester:
           <br/>
