@@ -16,8 +16,12 @@
 .env.test.local
 .env.production.local
 
-#api-keys
+#api/firebase stuff
 /src/firebaseconfig.js
+.firebaserc
+database.rules.json
+firebase.json
+/.vscode
 
 npm-debug.log*
 yarn-debug.log*
