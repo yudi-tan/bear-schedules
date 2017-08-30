@@ -78,7 +78,6 @@ class ScheduleForm extends React.Component {
       <div className="section">
         <p><strong>Please fill in your major and school on your very first submission</strong></p>
         <p>On subsequent submissions, please leave major and school blank.</p>
-        <p>Please fill in your schedules in order (i.e. Fall Freshman --> Freshman Spring etc).</p>
         <p>You don't have to fill up every single "class" field.</p>
         <p>For UC Berkeley students, please use "UCB" as School name. Go Bears!</p>
         <form onSubmit={this.handleSubmit.bind(this)}>
