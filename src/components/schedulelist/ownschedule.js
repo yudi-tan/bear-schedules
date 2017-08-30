@@ -37,10 +37,18 @@ class OwnSchedule extends React.Component{
     //such that before the data is loaded, we show a default text, and when data is loaded, we rerender with the data passed as props into the Schedule component.
     if(this.state.user !== '' && this.state.major !== '' && this.state.school !== ''){
       return (
+        <div>
+        <h3>Logged in as: {this.state.user}</h3>
         <Schedule user={this.state.user} major={this.state.major} school={this.state.school} />
+        </div>
       )
     } else {
-      return <p>Please create a <Link to="/createschedule"><u>schedule</u></Link> first!</p>
+      return (
+        <div>
+        <h3>Logged in as: {this.state.user} </h3>
+        <p>Please create a <Link to="/createschedule"><u>schedule</u></Link> first!</p>
+        </div>
+      )
     }
 
     }
