@@ -102,9 +102,9 @@ class ScheduleForm extends React.Component {
             <option value="Senior Fall">Senior Fall</option>
             <option value="Senior Spring">Senior Spring</option>
             <option value="Senior Summer">Senior Summer</option>
-            <option value="Additional Sem.">Additional Semester</option>
-            <option value="Additional Sem.">Additional Semester</option>
-            <option value="Additional Sem.">Additional Semester</option>
+            <option value="Additional Sem. 1">Additional Semester 1</option>
+            <option value="Additional Sem. 2">Additional Semester 2</option>
+            <option value="Additional Sem. 3">Additional Semester 3</option>
           </select>
           <br/><br/>
             <label>Class 1) </label>

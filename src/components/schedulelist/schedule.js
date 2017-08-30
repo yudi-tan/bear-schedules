@@ -36,7 +36,7 @@ class Schedule extends React.Component {
                             "Sophomore Fall", "Sophomore Spring", "Sophomore Summer",
                             "Junior Fall", "Junior Spring", "Junior Summer",
                             "Senior Fall", "Senior Spring", "Senior Summer",
-                            "Additional Semester"];
+                            "Additional Sem. 1", "Additional Sem. 2", "Additional Sem. 3"];
       newState.sort((a, b) => semesterOrder.indexOf(a.term) - semesterOrder.indexOf(b.term));
       this.setState({
         semesters: newState
