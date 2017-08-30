@@ -9,6 +9,7 @@ class OwnSchedule extends React.Component{
   constructor(){
     super();
     this.state = {
+      userObject: '',
       user: '',
       major: '',
       school: '',
@@ -18,6 +19,7 @@ class OwnSchedule extends React.Component{
   componentDidMount(){
      auth.onAuthStateChanged((user) => {
       if(user){
+        this.setState({userObject: user});
         let usersRef = firebase.database().ref("users");
         usersRef.orderByChild("user").equalTo(user.email).on('value', (snapshot) => {
           let users = snapshot.val();
@@ -38,14 +40,16 @@ class OwnSchedule extends React.Component{
     if(this.state.user !== '' && this.state.major !== '' && this.state.school !== ''){
       return (
         <div>
-        <h3>Logged in as: {this.state.user}</h3>
+        <h3>Logged in as: {this.state.userObject.displayName}</h3>
+        <h4>Email: {this.state.user}</h4>
         <Schedule user={this.state.user} major={this.state.major} school={this.state.school} />
         </div>
       )
     } else {
       return (
         <div>
-        <h3>Logged in as: {this.state.user} </h3>
+        <h3>Logged in as: {this.state.userObject.displayName} </h3>
+        <h4>Email: {this.state.userObject.email} </h4>
         <p>Please create a <Link to="/createschedule"><u>schedule</u></Link> first!</p>
         </div>
       )
