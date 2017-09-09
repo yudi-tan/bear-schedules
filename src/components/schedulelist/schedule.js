@@ -2,7 +2,7 @@ import React from 'react';
 import '../../all.css';
 import '../../slick.css';
 import Slider from 'react-slick';
-import firebase from '../../firebase.js';
+import firebase, {auth} from '../../firebase.js';
 
 
 
@@ -10,12 +10,20 @@ class Schedule extends React.Component {
 
   constructor(props){
     super(props);
+    this.deleteSemester = this.deleteSemester.bind(this);
     this.state = {
+      user: '',
       semesters: [],
     }
   }
 
   componentDidMount(){
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({user});
+      }
+    });
+
     const semestersRef = firebase.database().ref('semesters');
     semestersRef.orderByChild("user").equalTo(this.props.user).on('value', (snapshot) => {
       let semesters = snapshot.val();
@@ -30,6 +38,7 @@ class Schedule extends React.Component {
           class4: semesters[semester].class4,
           class5: semesters[semester].class5,
           class6: semesters[semester].class6,
+          user: semesters[semester].user
         })
       };
       const semesterOrder = ["Freshman Fall", "Freshman Spring", "Freshman Summer",
@@ -43,6 +52,11 @@ class Schedule extends React.Component {
       });
     });
   }
+
+  deleteSemester(semesterId){
+    const semesterRef = firebase.database().ref(`/semesters/${semesterId}`);
+    semesterRef.remove();
+  };
 
   render() {
     var settings = {
@@ -72,6 +86,8 @@ class Schedule extends React.Component {
       return (
         <div className="slide" key={s.id}>
               <h1>{s.term}</h1>
+              {this.state.user.email === s.user && this.state.user !== '' ? 
+                <h4><a><em><span onClick={() => this.deleteSemester(s.id)}>Delete</span></em></a></h4> : ''}
               <h3>Semester classes</h3>
 
                 {s.class1 !== '' ? s.class1 : ''}
