@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ScheduleList from '../schedulelist/schedulelist';
 import ScheduleForm from '../scheduleform/scheduleform';
-import Schedule from '../schedulelist/schedule';
 import OwnSchedule from '../schedulelist/ownschedule';
 
 

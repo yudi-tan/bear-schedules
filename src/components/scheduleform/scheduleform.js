@@ -1,6 +1,5 @@
 import React from 'react';
-import firebase, { auth, provider } from '../../firebase.js';
-import Firebase from 'firebase';
+import firebase, { auth } from '../../firebase.js';
 
 class ScheduleForm extends React.Component {
 
